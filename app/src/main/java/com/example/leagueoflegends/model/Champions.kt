@@ -48,18 +48,18 @@ data class Champion(
     data class Image(
         @SerializedName("full")
         val full: String,
-        @SerializedName("group")
-        val group: String,
-        @SerializedName("h")
-        val h: Int,
         @SerializedName("sprite")
         val sprite: String,
-        @SerializedName("w")
-        val w: Int,
+        @SerializedName("group")
+        val group: String,
         @SerializedName("x")
         val x: Int,
         @SerializedName("y")
-        val y: Int
+        val y: Int,
+        @SerializedName("w")
+        val w: Int,
+        @SerializedName("h")
+        val h: Int
     )
 
     data class Info(
@@ -74,46 +74,46 @@ data class Champion(
     )
 
     data class Stats(
-        @SerializedName("armor")
-        val armor: Double,
-        @SerializedName("armorperlevel")
-        val armorperlevel: Double,
-        @SerializedName("attackdamage")
-        val attackdamage: Double,
-        @SerializedName("attackdamageperlevel")
-        val attackdamageperlevel: Double,
-        @SerializedName("attackrange")
-        val attackrange: Double,
-        @SerializedName("attackspeed")
-        val attackspeed: Double,
-        @SerializedName("attackspeedperlevel")
-        val attackspeedperlevel: Double,
-        @SerializedName("crit")
-        val crit: Double,
-        @SerializedName("critperlevel")
-        val critperlevel: Double,
         @SerializedName("hp")
         val hp: Double,
         @SerializedName("hpperlevel")
         val hpperlevel: Double,
-        @SerializedName("hpregen")
-        val hpregen: Double,
-        @SerializedName("hpregenperlevel")
-        val hpregenperlevel: Double,
-        @SerializedName("movespeed")
-        val movespeed: Double,
         @SerializedName("mp")
         val mp: Double,
         @SerializedName("mpperlevel")
         val mpperlevel: Double,
+        @SerializedName("movespeed")
+        val movespeed: Double,
+        @SerializedName("armor")
+        val armor: Double,
+        @SerializedName("armorperlevel")
+        val armorperlevel: Double,
+        @SerializedName("spellblock")
+        val spellblock: Double,
+        @SerializedName("spellblockperlevel")
+        val spellblockperlevel: Double,
+        @SerializedName("attackrange")
+        val attackrange: Double,
+        @SerializedName("hpregen")
+        val hpregen: Double,
+        @SerializedName("hpregenperlevel")
+        val hpregenperlevel: Double,
         @SerializedName("mpregen")
         val mpregen: Double,
         @SerializedName("mpregenperlevel")
         val mpregenperlevel: Double,
-        @SerializedName("spellblock")
-        val spellblock: Double,
-        @SerializedName("spellblockperlevel")
-        val spellblockperlevel: Double
+        @SerializedName("crit")
+        val crit: Double,
+        @SerializedName("critperlevel")
+        val critperlevel: Double,
+        @SerializedName("attackdamage")
+        val attackdamage: Double,
+        @SerializedName("attackdamageperlevel")
+        val attackdamageperlevel: Double,
+        @SerializedName("attackspeedperlevel")
+        val attackspeedperlevel: Double,
+        @SerializedName("attackspeed")
+        val attackspeed: Double
     )
 }
 
