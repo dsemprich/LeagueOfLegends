@@ -39,13 +39,23 @@ class MainRepositoryTest {
     }
 
     @Test
-    fun fetchChampionsList() = runBlocking {
+    fun `fetch ChampionsList from Remote`() = runBlocking {
         val mockData = mockk<Response<Champions>>(relaxed = true).apply {
             every { isSuccessful } returns true
             every { body()?.data } returns mockChampionsMap()
         }
         coEvery { service.fetchChampions(any()) } returns mockData
         coEvery { championsDao.getChampionsList() } returns emptyList()
+        val  response = repository.fetchChampionsList()
+        response.collect {
+            assertEquals(it[0].name,"Aatrox")
+        }
+    }
+
+    @Test
+    fun `fetch championsList from Database`() = runBlocking {
+        val mockData = mockChampionsMap().map { it.value }
+        coEvery { championsDao.getChampionsList() } returns mockData
         val  response = repository.fetchChampionsList()
         response.collect {
             assertEquals(it[0].name,"Aatrox")

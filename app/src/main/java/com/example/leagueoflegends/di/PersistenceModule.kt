@@ -2,6 +2,7 @@ package com.example.leagueoflegends.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.leagueoflegends.details.db.ChampionInfoDao
 import com.example.leagueoflegends.main.db.ChampionsDao
 import com.example.leagueoflegends.persistence.AppDatabase
 import dagger.Module
@@ -25,7 +26,13 @@ object PersistenceModule {
 
     @Provides
     @Singleton
-    fun providePokemonDao(appDatabase: AppDatabase): ChampionsDao {
+    fun provideChampionDao(appDatabase: AppDatabase): ChampionsDao {
         return appDatabase.championsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideChampionInfoDao(appDatabase: AppDatabase): ChampionInfoDao {
+        return appDatabase.championsInfoDao()
     }
 }

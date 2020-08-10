@@ -1,10 +1,17 @@
 package com.example.leagueoflegends.model
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+/* middle image */
+const val BASE_LOADING_URL = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"
+/* full image */
+const val BASE_SPLASH_URL = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"
+/* small image */
+const val BASE_SQUARE_URL = "http://ddragon.leagueoflegends.com/cdn/10.15.1/img/champion"
 
 data class Champions(
     @SerializedName("data")
@@ -17,6 +24,7 @@ data class Champions(
     val version: String
 )
 
+@Parcelize
 @Entity(primaryKeys = ["id"])
 data class Champion(
     @SerializedName("blurb")
@@ -44,7 +52,8 @@ data class Champion(
     val title: String,
     @SerializedName("version")
     val version: String
-) {
+) : Parcelable {
+    @Parcelize
     data class Image(
         @SerializedName("full")
         val full: String,
@@ -60,8 +69,9 @@ data class Champion(
         val w: Int,
         @SerializedName("h")
         val h: Int
-    )
+    ) : Parcelable
 
+    @Parcelize
     data class Info(
         @SerializedName("attack")
         val attack: Int,
@@ -71,8 +81,9 @@ data class Champion(
         val difficulty: Int,
         @SerializedName("magic")
         val magic: Int
-    )
+    ) : Parcelable
 
+    @Parcelize
     data class Stats(
         @SerializedName("hp")
         val hp: Double,
@@ -114,6 +125,12 @@ data class Champion(
         val attackspeedperlevel: Double,
         @SerializedName("attackspeed")
         val attackspeed: Double
-    )
+    ) : Parcelable
+
+    fun loadingImageUrl() = "$BASE_LOADING_URL${id}_0.jpg"
+
+    fun splashImageUrl() = "$BASE_SPLASH_URL${id}_0.jpg"
+
+    fun squareImageUrl() = "$BASE_SQUARE_URL${image.full}"
 }
 

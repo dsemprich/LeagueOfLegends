@@ -17,4 +17,26 @@ open class ChampionsTypeConverter {
     fun fromList(list: List<String>):String {
         return Gson().toJson(list)
     }
+
+    @TypeConverter
+    fun fromImageString(value: String): Champion.Image {
+        val mapType = object : TypeToken<Champion.Image>() {}.type
+        return Gson().fromJson(value, mapType)
+    }
+
+    @TypeConverter
+    fun fromImage(image: Champion.Image):String {
+        return Gson().toJson(image)
+    }
+
+    @TypeConverter
+    fun fromInfoString(value: String): Champion.Info {
+        val mapType = object : TypeToken<Champion.Info>() {}.type
+        return Gson().fromJson(value, mapType)
+    }
+
+    @TypeConverter
+    fun fromInfo(info: Champion.Info):String {
+        return Gson().toJson(info)
+    }
 }

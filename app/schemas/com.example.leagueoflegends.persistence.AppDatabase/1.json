@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "714b399dd42a4149176dc536dc7ff3e7",
+    "identityHash": "b285ba1f7e6d688463b607bf4b0c554d",
     "entities": [
       {
         "tableName": "Champion",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`blurb` TEXT NOT NULL, `id` TEXT NOT NULL, `key` TEXT NOT NULL, `name` TEXT NOT NULL, `partype` TEXT NOT NULL, `tags` TEXT NOT NULL, `title` TEXT NOT NULL, `version` TEXT NOT NULL, `full` TEXT NOT NULL, `group` TEXT NOT NULL, `h` INTEGER NOT NULL, `sprite` TEXT NOT NULL, `w` INTEGER NOT NULL, `x` INTEGER NOT NULL, `y` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `magic` INTEGER NOT NULL, `armor` REAL NOT NULL, `armorperlevel` REAL NOT NULL, `attackdamage` REAL NOT NULL, `attackdamageperlevel` REAL NOT NULL, `attackrange` REAL NOT NULL, `attackspeed` REAL NOT NULL, `attackspeedperlevel` REAL NOT NULL, `crit` REAL NOT NULL, `critperlevel` REAL NOT NULL, `hp` REAL NOT NULL, `hpperlevel` REAL NOT NULL, `hpregen` REAL NOT NULL, `hpregenperlevel` REAL NOT NULL, `movespeed` REAL NOT NULL, `mp` REAL NOT NULL, `mpperlevel` REAL NOT NULL, `mpregen` REAL NOT NULL, `mpregenperlevel` REAL NOT NULL, `spellblock` REAL NOT NULL, `spellblockperlevel` REAL NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`blurb` TEXT NOT NULL, `id` TEXT NOT NULL, `key` TEXT NOT NULL, `name` TEXT NOT NULL, `partype` TEXT NOT NULL, `tags` TEXT NOT NULL, `title` TEXT NOT NULL, `version` TEXT NOT NULL, `full` TEXT NOT NULL, `sprite` TEXT NOT NULL, `group` TEXT NOT NULL, `x` INTEGER NOT NULL, `y` INTEGER NOT NULL, `w` INTEGER NOT NULL, `h` INTEGER NOT NULL, `attack` INTEGER NOT NULL, `defense` INTEGER NOT NULL, `difficulty` INTEGER NOT NULL, `magic` INTEGER NOT NULL, `hp` REAL NOT NULL, `hpperlevel` REAL NOT NULL, `mp` REAL NOT NULL, `mpperlevel` REAL NOT NULL, `movespeed` REAL NOT NULL, `armor` REAL NOT NULL, `armorperlevel` REAL NOT NULL, `spellblock` REAL NOT NULL, `spellblockperlevel` REAL NOT NULL, `attackrange` REAL NOT NULL, `hpregen` REAL NOT NULL, `hpregenperlevel` REAL NOT NULL, `mpregen` REAL NOT NULL, `mpregenperlevel` REAL NOT NULL, `crit` REAL NOT NULL, `critperlevel` REAL NOT NULL, `attackdamage` REAL NOT NULL, `attackdamageperlevel` REAL NOT NULL, `attackspeedperlevel` REAL NOT NULL, `attackspeed` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "blurb",
@@ -63,27 +63,15 @@
             "notNull": true
           },
           {
-            "fieldPath": "image.group",
-            "columnName": "group",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "image.h",
-            "columnName": "h",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
             "fieldPath": "image.sprite",
             "columnName": "sprite",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "image.w",
-            "columnName": "w",
-            "affinity": "INTEGER",
+            "fieldPath": "image.group",
+            "columnName": "group",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -95,6 +83,18 @@
           {
             "fieldPath": "image.y",
             "columnName": "y",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image.w",
+            "columnName": "w",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image.h",
+            "columnName": "h",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -123,60 +123,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "stats.armor",
-            "columnName": "armor",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.armorperlevel",
-            "columnName": "armorperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.attackdamage",
-            "columnName": "attackdamage",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.attackdamageperlevel",
-            "columnName": "attackdamageperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.attackrange",
-            "columnName": "attackrange",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.attackspeed",
-            "columnName": "attackspeed",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.attackspeedperlevel",
-            "columnName": "attackspeedperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.crit",
-            "columnName": "crit",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.critperlevel",
-            "columnName": "critperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
             "fieldPath": "stats.hp",
             "columnName": "hp",
             "affinity": "REAL",
@@ -185,24 +131,6 @@
           {
             "fieldPath": "stats.hpperlevel",
             "columnName": "hpperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.hpregen",
-            "columnName": "hpregen",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.hpregenperlevel",
-            "columnName": "hpregenperlevel",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "stats.movespeed",
-            "columnName": "movespeed",
             "affinity": "REAL",
             "notNull": true
           },
@@ -219,14 +147,20 @@
             "notNull": true
           },
           {
-            "fieldPath": "stats.mpregen",
-            "columnName": "mpregen",
+            "fieldPath": "stats.movespeed",
+            "columnName": "movespeed",
             "affinity": "REAL",
             "notNull": true
           },
           {
-            "fieldPath": "stats.mpregenperlevel",
-            "columnName": "mpregenperlevel",
+            "fieldPath": "stats.armor",
+            "columnName": "armor",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.armorperlevel",
+            "columnName": "armorperlevel",
             "affinity": "REAL",
             "notNull": true
           },
@@ -240,6 +174,188 @@
             "fieldPath": "stats.spellblockperlevel",
             "columnName": "spellblockperlevel",
             "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.attackrange",
+            "columnName": "attackrange",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.hpregen",
+            "columnName": "hpregen",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.hpregenperlevel",
+            "columnName": "hpregenperlevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.mpregen",
+            "columnName": "mpregen",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.mpregenperlevel",
+            "columnName": "mpregenperlevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.crit",
+            "columnName": "crit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.critperlevel",
+            "columnName": "critperlevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.attackdamage",
+            "columnName": "attackdamage",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.attackdamageperlevel",
+            "columnName": "attackdamageperlevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.attackspeedperlevel",
+            "columnName": "attackspeedperlevel",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats.attackspeed",
+            "columnName": "attackspeed",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "ChampionDetail",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`allytips` TEXT NOT NULL, `blurb` TEXT NOT NULL, `enemytips` TEXT NOT NULL, `id` TEXT NOT NULL, `image` TEXT NOT NULL, `info` TEXT NOT NULL, `key` TEXT NOT NULL, `lore` TEXT NOT NULL, `name` TEXT NOT NULL, `partype` TEXT NOT NULL, `passive` TEXT NOT NULL, `recommended` TEXT NOT NULL, `skins` TEXT NOT NULL, `spells` TEXT NOT NULL, `stats` TEXT NOT NULL, `tags` TEXT NOT NULL, `title` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "allytips",
+            "columnName": "allytips",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "blurb",
+            "columnName": "blurb",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enemytips",
+            "columnName": "enemytips",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "info",
+            "columnName": "info",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "key",
+            "columnName": "key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lore",
+            "columnName": "lore",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "partype",
+            "columnName": "partype",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "passive",
+            "columnName": "passive",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recommended",
+            "columnName": "recommended",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "skins",
+            "columnName": "skins",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spells",
+            "columnName": "spells",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stats",
+            "columnName": "stats",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tags",
+            "columnName": "tags",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -256,7 +372,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '714b399dd42a4149176dc536dc7ff3e7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b285ba1f7e6d688463b607bf4b0c554d')"
     ]
   }
 }

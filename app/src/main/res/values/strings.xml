@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">LeagueOfLegends</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="attack">Attack</string>
+    <string name="defense">Defense</string>
+    <string name="base_stats">Stats</string>
+    <string name="hp">HP</string>
+    <string name="atk">Damage</string>
+    <string name="armor">Armor</string>
+    <string name="spd">Speed</string>
+    <string name="move">Move Speed</string>
 </resources>
