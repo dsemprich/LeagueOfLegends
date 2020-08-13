@@ -1,8 +1,6 @@
 package com.example.leagueoflegends.binding
 
 import android.app.Activity
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.GradientDrawable.*
 import android.view.View
 import android.view.WindowManager
@@ -11,12 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.leagueoflegends.extensions.createGradient
 import com.example.leagueoflegends.extensions.gone
-import com.example.leagueoflegends.model.ChampionDetail
-import com.example.leagueoflegends.model.ChampionInfo
 import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
 import com.google.android.material.card.MaterialCardView
@@ -68,11 +63,12 @@ fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView:
         .listener(GlidePalette.with(url)
             .use(BitmapPalette.Profile.MUTED_LIGHT)
             .intoCallBack { palette ->
-                val light = palette?.lightVibrantSwatch?.rgb
+                val light = palette?.mutedSwatch?.rgb
                 val domain = palette?.dominantSwatch?.rgb
                 if (domain != null) {
                     if (light != null) {
-                        val gradient = createGradient(intArrayOf(domain, light), Orientation.TOP_BOTTOM)
+//                        val gradient = createGradient(intArrayOf(domain, light), Orientation.TOP_BOTTOM)
+                        val gradient = createGradient(intArrayOf(light, domain), Orientation.TOP_BOTTOM)
                         paletteView.background = gradient
                     } else {
                         paletteView.setBackgroundColor(domain)

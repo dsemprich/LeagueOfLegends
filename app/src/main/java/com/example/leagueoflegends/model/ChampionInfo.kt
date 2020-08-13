@@ -1,8 +1,14 @@
 package com.example.leagueoflegends.model
 
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.leagueoflegends.R
 import com.google.gson.annotations.SerializedName
 
 data class ChampionInfo(
@@ -53,6 +59,28 @@ data class ChampionInfo(
             @SerializedName("title")
             val title: String
         ) {
+
+        fun roleDrawableId(context: Context ): Drawable? =
+            ContextCompat.getDrawable(
+                context, when (tags[0]) {
+                Roles.MAGE.type() -> R.drawable.ic_mage
+                Roles.FIGHTER.type() -> R.drawable.ic_fighter
+                Roles.MARKSMAN.type() -> R.drawable.ic_marksman
+                Roles.TANK.type() -> R.drawable.ic_tank
+                Roles.SUPPORT.type() -> R.drawable.ic_support
+                else -> R.drawable.ic_launcher_foreground
+            })
+
+        enum class Roles {
+            MAGE,
+            MARKSMAN,
+            FIGHTER,
+            TANK,
+            SUPPORT;
+
+            @SuppressLint("DefaultLocale")
+            fun type(): String = this.name.toLowerCase().capitalize()
+        }
 
         data class Passive(
                 @SerializedName("description")
@@ -183,6 +211,8 @@ data class ChampionInfo(
                 @SerializedName("label")
                 val label: List<String>
             )
+
+            fun spellImage() = "https://ddragon.leagueoflegends.com/cdn/10.16.1/img/spell/${image.full}"
         }
 
         data class Stats(

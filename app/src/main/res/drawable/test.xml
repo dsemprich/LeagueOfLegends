@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#ff0020"/>
+            <corners
+                android:bottomRightRadius="10dp"
+                android:topRightRadius="10dp"
+                />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip
+            android:drawable="@drawable/ic_indicator_2"
+            android:clipOrientation="horizontal"
+            android:gravity="left">
+        </clip>
+    </item>
+</layer-list>

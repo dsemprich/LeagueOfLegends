@@ -9,7 +9,7 @@ import com.example.leagueoflegends.model.Champion
 
 class ChampionsAdapter : RecyclerView.Adapter<ChampionsAdapter.ChampionViewHolder>() {
 
-    val items: MutableList<Champion> = mutableListOf()
+    private val items: MutableList<Champion> = mutableListOf()
     private var onClickedTime = System.currentTimeMillis()
 
     override fun onCreateViewHolder(

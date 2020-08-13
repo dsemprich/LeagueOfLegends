@@ -6,6 +6,7 @@
     tools:context=".details.ui.DetailsActivity">
 
     <data>
+        <import type="androidx.core.content.ContextCompat" />
         <variable
             name="champion"
             type="com.example.leagueoflegends.model.Champion" />
@@ -40,6 +41,7 @@
                 app:srcCompat="@drawable/ic_arrow" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +88,7 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/colorPrimary"
                 android:elevation="9dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,10 +97,9 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image"
-                android:layout_width="190dp"
+                android:layout_width="0dp"
                 android:layout_height="190dp"
-                android:layout_marginBottom="20dp"
-                android:scaleType="center"
+                android:scaleType="centerCrop"
                 android:translationZ="100dp"
                 app:layout_constraintBottom_toBottomOf="@id/header"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,17 +108,8 @@
                 app:paletteView="@{header}"
                 app:toast="@{vm.toastLiveData}" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name"
-                tools:listitem="@layout/item_details" />
-
             <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:gone="@{!vm.loading}"
@@ -125,69 +118,86 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="gone" />
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/attack"
+                android:id="@+id/role"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@{String.valueOf(vm.championInfoLiveData.info.attack)}"
+                android:text="@{String.valueOf(vm.championInfoLiveData.tags[0])}"
                 android:textSize="21sp"
-                app:layout_constraintEnd_toStartOf="@+id/defense"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-                tools:text="24.0" />
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                tools:text="Fighter" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/defense"
-                style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(vm.championInfoLiveData.info.defense)}"
-                android:textSize="21sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/attack"
-                app:layout_constraintTop_toTopOf="@+id/attack"
-                tools:text="11" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/attack_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/attack"
+                android:text="@string/difficulty"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/defense"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/role"
+                app:layout_constraintTop_toTopOf="@+id/role" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                app:imageDrawable="@{vm.championInfoLiveData.roleDrawableId(context)}"
+                app:layout_constraintEnd_toStartOf="@+id/name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/attack"
-                tools:text="Attack" />
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:src="@drawable/ic_fighter" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/defense_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/defense"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/attack"
-                app:layout_constraintTop_toBottomOf="@+id/defense" />
+            <ImageView
+                android:id="@+id/diff1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@+id/defense"
+                app:layout_constraintTop_toBottomOf="@+id/defense"
+                app:srcCompat="@drawable/ic_indicator_2" />
+
+            <ImageView
+                android:id="@+id/diff2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="@{4 > vm.championInfoLiveData.info.difficulty ? @color/background800 : @color/md_blue_30}"
+                app:layout_constraintBottom_toBottomOf="@+id/diff1"
+                app:layout_constraintStart_toEndOf="@+id/diff1"
+                app:srcCompat="@drawable/ic_indicator_2" />
+
+            <ImageView
+                android:id="@+id/diff3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:tint="@{ 7 > vm.championInfoLiveData.info.difficulty? @color/background800 : @color/md_blue_30}"
+                app:layout_constraintBottom_toBottomOf="@+id/diff2"
+                app:layout_constraintStart_toEndOf="@+id/diff2"
+                app:srcCompat="@drawable/ic_indicator_2" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/stats_title"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/base_stats"
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/defense_title" />
+                app:layout_constraintTop_toBottomOf="@+id/role" />
 
             <TextView
                 android:id="@+id/hp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/hp"
                 android:textColor="@color/white"
@@ -195,120 +205,232 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stats_title" />
 
-            <ProgressBar
+            <TextView
                 android:id="@+id/progress_hp"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
+                android:layout_width="24dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginStart="64dp"
+                android:text="@{``+vm.championInfoLiveData.stats.hp}"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/hp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hp"
                 app:layout_constraintTop_toTopOf="@+id/hp"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/colorPrimary"
-                android:progress="@{vm.championInfoLiveData.stats.hpInt}" />
+                tools:text="576" />
 
             <TextView
-                android:id="@+id/damage"
+                android:id="@+id/hpregen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:text="@string/atk"
+                android:layout_marginStart="48dp"
+                android:text="@string/hpreg"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hp" />
+                app:layout_constraintStart_toEndOf="@+id/progress_hp"
+                app:layout_constraintTop_toTopOf="@+id/progress_hp" />
 
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="16dp"
                 android:layout_height="18dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/damage"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="64dp"
+                android:text="@{``+vm.championInfoLiveData.stats.hpregen}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/hpregen"
+                app:layout_constraintStart_toEndOf="@+id/hpregen"
+                app:layout_constraintTop_toTopOf="@+id/hpregen"
+                tools:text="35" />
+
+            <TextView
+                android:id="@+id/mp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/mana"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/hp"
+                app:layout_constraintTop_toBottomOf="@+id/hpregen" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="8dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.mp}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/mp"
                 app:layout_constraintStart_toStartOf="@+id/progress_hp"
-                app:layout_constraintTop_toTopOf="@+id/damage"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/md_orange_100"
-                android:progress="@{vm.championInfoLiveData.stats.attackDamageInt}" />
+                app:layout_constraintTop_toTopOf="@+id/mp"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/manareg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mpreg"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/hpregen"
+                app:layout_constraintTop_toTopOf="@+id/mp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="8dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.mpregen}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/manareg"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toTopOf="@+id/manareg"
+                tools:text="0" />
 
             <TextView
                 android:id="@+id/armor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/armor"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/damage" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/armor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/progress_hp"
-                app:layout_constraintTop_toTopOf="@+id/armor"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/md_blue_200"
-                android:progress="@{vm.championInfoLiveData.stats.armorInt}"/>
+                app:layout_constraintStart_toStartOf="@+id/mp"
+                app:layout_constraintTop_toBottomOf="@+id/manareg" />
 
             <TextView
-                android:id="@+id/speed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:text="@string/spd"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/armor" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
-                android:layout_marginEnd="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/speed"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/progress_hp"
-                app:layout_constraintTop_toTopOf="@+id/speed"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/flying"
-                android:progress="@{vm.championInfoLiveData.stats.attackSpeedInt }" />
+                android:text="@{``+vm.championInfoLiveData.stats.armor}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/armor"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/armor"
+                tools:text="34" />
+
+            <TextView
+                android:id="@+id/damage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/atk"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/manareg"
+                app:layout_constraintTop_toTopOf="@+id/armor" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.attackdamage}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/damage"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/damage"
+                tools:text="51" />
+
+
+            <TextView
+                android:id="@+id/attackspeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/atkSpeed"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/armor"
+                app:layout_constraintTop_toBottomOf="@+id/damage" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="28dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.attackspeed}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/attackspeed"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/attackspeed"
+                tools:text="0.65" />
+
+
+            <TextView
+                android:id="@+id/spellblock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spellblock"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/damage"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="16dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.spellblock}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/spellblock"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/spellblock"
+                tools:text="30" />
+
+            <TextView
+                android:id="@+id/range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/range"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/attackspeed"
+                app:layout_constraintTop_toBottomOf="@+id/spellblock" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="24dp"
+                android:layout_height="18dp"
+                android:text="@{``+vm.championInfoLiveData.stats.attackrange}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/range"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/range"
+                tools:text="175" />
 
             <TextView
                 android:id="@+id/move"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/move"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/speed" />
+                app:layout_constraintStart_toStartOf="@+id/spellblock"
+                app:layout_constraintTop_toBottomOf="@+id/spellblock" />
 
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="18dp"
-                android:layout_marginEnd="32dp"
+                android:text="@{``+vm.championInfoLiveData.stats.movespeed}"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/move"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/progress_hp"
+                app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toTopOf="@+id/move"
-                android:progressBackgroundTint="@color/white"
-                android:progressTint="@color/md_green_200"
-                android:progress="@{vm.championInfoLiveData.stats.moveSpeedInt}" />
+                tools:text="345" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:background="@color/background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/move"
+                app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:tabTextColor="@color/white" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

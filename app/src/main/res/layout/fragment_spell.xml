@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".details.ui.SpellFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        tools:background="@color/background"
+        tools:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_spell_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="BlaBla" />
+
+        <TextView
+            android:id="@+id/text_spell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/text_spell_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_spell_title"
+            tools:text="@string/hello_blank_fragment" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

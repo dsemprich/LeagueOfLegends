@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.imageview.ShapeableImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/icon"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:contentDescription="@null"
+    android:paddingBottom="3dp"
+    tools:background="@color/background"
+    tools:src="@drawable/ic_launcher_foreground"
+    android:elevation="9dp"
+    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView.Reverse"
+    android:scaleType="centerInside" />
+

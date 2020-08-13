@@ -1,11 +1,15 @@
 package com.example.leagueoflegends.details.ui
 
+import android.annotation.SuppressLint
+import androidx.annotation.DrawableRes
 import androidx.databinding.ObservableBoolean
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.example.leagueoflegends.R
 import com.example.leagueoflegends.details.repository.DetailRepository
 import com.example.leagueoflegends.model.ChampionDetail
 import kotlinx.coroutines.Dispatchers
+import java.util.*
 
 class DetailViewModel @ViewModelInject constructor(
     private val detailRepository: DetailRepository

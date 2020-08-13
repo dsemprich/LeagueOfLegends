@@ -17,4 +17,13 @@
     <string name="armor">Armor</string>
     <string name="spd">Speed</string>
     <string name="move">Move Speed</string>
+    <string name="difficulty">DIFFICULTY</string>
+    <string name="hpreg">HP Reg.</string>
+    <string name="mana">MP</string>
+    <string name="mpreg">MP Reg.</string>
+    <string name="spellblock">Spellblock</string>
+    <string name="atkSpeed">Atk Speed</string>
+    <string name="range">Range</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
