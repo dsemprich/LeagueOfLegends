@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.leagueoflegends.databinding.ItemChampionBinding
 import com.example.leagueoflegends.details.ui.DetailsActivity
+import com.example.leagueoflegends.extensions.TRANSITION_ACTIVITY_DURATION
 import com.example.leagueoflegends.model.Champion
 
 class ChampionsAdapter : RecyclerView.Adapter<ChampionsAdapter.ChampionViewHolder>() {
@@ -34,7 +35,7 @@ class ChampionsAdapter : RecyclerView.Adapter<ChampionsAdapter.ChampionViewHolde
             executePendingBindings()
             root.setOnClickListener {
                 val currentTime = System.currentTimeMillis()
-                if (currentTime - onClickedTime > transformationLayout.duration) {
+                if (currentTime - onClickedTime > TRANSITION_ACTIVITY_DURATION) {
                     onClickedTime = currentTime
                     DetailsActivity.startActivity(transformationLayout, item)
                 }

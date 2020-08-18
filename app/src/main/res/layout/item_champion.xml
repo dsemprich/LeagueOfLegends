@@ -8,11 +8,10 @@
             type="com.example.leagueoflegends.model.Champion" />
     </data>
 
-    <com.skydoves.transformationlayout.TransformationLayout
+    <FrameLayout
         android:id="@+id/transformationLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:transformation_duration="550">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -65,5 +64,5 @@
                     tools:text="Athrox" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-    </com.skydoves.transformationlayout.TransformationLayout>
+    </FrameLayout>
 </layout>

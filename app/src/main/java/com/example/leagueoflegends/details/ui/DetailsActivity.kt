@@ -1,8 +1,10 @@
 package com.example.leagueoflegends.details.ui
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -10,11 +12,10 @@ import coil.api.load
 import com.example.leagueoflegends.R
 import com.example.leagueoflegends.binding.bindingView
 import com.example.leagueoflegends.databinding.ActivityDetailsBinding
+import com.example.leagueoflegends.extensions.TRANSITION_ACTIVITY
 import com.example.leagueoflegends.extensions.onTransformationEndContainerApplyParams
 import com.example.leagueoflegends.model.Champion
 import com.google.android.material.tabs.TabLayoutMediator
-import com.skydoves.transformationlayout.TransformationCompat
-import com.skydoves.transformationlayout.TransformationLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tab_spells.view.*
 
@@ -34,7 +35,7 @@ class DetailsActivity : AppCompatActivity() {
         binding.apply {
             champion = championItem
             lifecycleOwner = this@DetailsActivity
-            vm = viewModel.apply { fetchChampionInfo(championItem.name) }
+            vm = viewModel.apply { fetchChampionInfo(championItem.id) }
             spellAdapter = SpellAdapter(this@DetailsActivity)
             pager.adapter = spellAdapter
 
@@ -56,12 +57,13 @@ class DetailsActivity : AppCompatActivity() {
 
         private const val EXTRA_CHAMPION = "EXTRA_CHAMPION"
 
-        fun startActivity(transformationLayout: TransformationLayout, champion: Champion) {
-            val context = transformationLayout.context
+        fun startActivity(startView: View, champion: Champion) {
+            val context = startView.context
             if (context is Activity) {
                 val intent = Intent(context, DetailsActivity::class.java)
                 intent.putExtra(EXTRA_CHAMPION, champion)
-                TransformationCompat.startActivity(transformationLayout, intent)
+                val options = ActivityOptions.makeSceneTransitionAnimation(context, startView, TRANSITION_ACTIVITY )
+                context.startActivity(intent, options.toBundle())
             }
         }
     }
