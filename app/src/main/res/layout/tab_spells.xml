@@ -12,5 +12,5 @@
     tools:src="@drawable/ic_launcher_foreground"
     android:elevation="9dp"
     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView.Reverse"
-    android:scaleType="centerInside" />
+    android:scaleType="centerCrop" />
 

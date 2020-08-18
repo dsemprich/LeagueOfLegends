@@ -4,7 +4,6 @@ package com.example.leagueoflegends.model
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -67,6 +66,7 @@ data class ChampionInfo(
                 Roles.FIGHTER.type() -> R.drawable.ic_fighter
                 Roles.MARKSMAN.type() -> R.drawable.ic_marksman
                 Roles.TANK.type() -> R.drawable.ic_tank
+                Roles.ASSASSIN.type() -> R.drawable.ic_assassin
                 Roles.SUPPORT.type() -> R.drawable.ic_support
                 else -> R.drawable.ic_launcher_foreground
             })
@@ -76,6 +76,7 @@ data class ChampionInfo(
             MARKSMAN,
             FIGHTER,
             TANK,
+            ASSASSIN,
             SUPPORT;
 
             @SuppressLint("DefaultLocale")

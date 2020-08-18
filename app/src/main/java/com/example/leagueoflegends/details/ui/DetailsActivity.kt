@@ -3,11 +3,10 @@ package com.example.leagueoflegends.details.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import com.bumptech.glide.Glide
+import coil.api.load
 import com.example.leagueoflegends.R
 import com.example.leagueoflegends.binding.bindingView
 import com.example.leagueoflegends.databinding.ActivityDetailsBinding
@@ -47,10 +46,7 @@ class DetailsActivity : AppCompatActivity() {
                 this.isTabIndicatorFullWidth = false
                 TabLayoutMediator(this, binding.pager) { tab, position ->
                     tab.setCustomView(R.layout.tab_spells)
-                    Glide.with(this@DetailsActivity)
-                        .load(it?.spells?.get(position)?.spellImage())
-                        .centerCrop()
-                        .into(tab.view.icon)
+                    tab.view.icon.load(it?.spells?.get(position)?.spellImage())
                 }.attach()
             }
         }
