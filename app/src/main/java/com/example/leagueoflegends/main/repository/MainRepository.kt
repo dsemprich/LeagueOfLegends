@@ -7,9 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.util.*
-import javax.inject.Inject
 
-class MainRepository  @Inject constructor(
+class MainRepository  constructor(
     private val lolService: LolService,
     private val championsDao: ChampionsDao
 ) {

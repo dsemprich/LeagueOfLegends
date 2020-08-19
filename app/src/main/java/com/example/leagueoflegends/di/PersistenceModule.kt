@@ -1,38 +1,18 @@
 package com.example.leagueoflegends.di
 
-import android.app.Application
 import androidx.room.Room
-import com.example.leagueoflegends.details.db.ChampionInfoDao
-import com.example.leagueoflegends.main.db.ChampionsDao
 import com.example.leagueoflegends.persistence.AppDatabase
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import org.koin.dsl.module.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object PersistenceModule {
+val persistenceModule = module {
 
-    @Provides
-    @Singleton
-    fun provideAppDatabase(application: Application): AppDatabase {
-        return Room
-            .databaseBuilder(application, AppDatabase::class.java, "lol.db")
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, "lol.db")
             .fallbackToDestructiveMigration()
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideChampionDao(appDatabase: AppDatabase): ChampionsDao {
-        return appDatabase.championsDao()
-    }
+    single { get<AppDatabase>().championsDao() }
 
-    @Provides
-    @Singleton
-    fun provideChampionInfoDao(appDatabase: AppDatabase): ChampionInfoDao {
-        return appDatabase.championsInfoDao()
-    }
+    single { get<AppDatabase>().championsInfoDao() }
 }

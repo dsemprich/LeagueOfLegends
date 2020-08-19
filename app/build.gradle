@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -70,20 +69,6 @@ dependencies {
 
     // startup
     implementation "androidx.startup:startup-runtime:1.0.0-alpha02"
-
-    // dagger
-    implementation "com.google.dagger:hilt-android:2.28.3-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28.3-alpha"
-
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
-
-    implementation 'androidx.hilt:hilt-work:1.0.0-alpha02'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
-
-    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28.3-alpha'
-    testImplementation 'com.google.dagger:hilt-android-testing:2.28.3-alpha'
-    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28.3-alpha'
 
     // network
     implementation "com.github.skydoves:sandwich:1.0.4"

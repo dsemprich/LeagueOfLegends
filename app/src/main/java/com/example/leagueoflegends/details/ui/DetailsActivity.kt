@@ -16,14 +16,13 @@ import com.example.leagueoflegends.extensions.TRANSITION_ACTIVITY
 import com.example.leagueoflegends.extensions.onTransformationEndContainerApplyParams
 import com.example.leagueoflegends.model.Champion
 import com.google.android.material.tabs.TabLayoutMediator
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.tab_spells.view.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
     private val binding: ActivityDetailsBinding by bindingView(R.layout.activity_details)
-    private val viewModel: DetailViewModel by viewModels()
+    private val viewModel: DetailViewModel by viewModel<DetailViewModel>()
 
     private lateinit var spellAdapter: SpellAdapter
 
