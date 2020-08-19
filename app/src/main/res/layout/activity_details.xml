@@ -72,43 +72,60 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:text="@{champion.name}"
+                android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:translationZ="100dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/header"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/header"
-                tools:text="skydoves" />
+                tools:layout_editor_absoluteY="310dp"
+                tools:text="Champ" />
+
+            <TextView
+                android:id="@+id/champion_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.championInfoLiveData.title}"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:translationZ="100dp"
+                app:layout_constraintBottom_toTopOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Master of the universe" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/header"
                 android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_height="310dp"
                 android:background="@color/colorPrimary"
-                android:elevation="9dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:elevation="90dp"
+                android:layout_height="0dp"
+
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@id/header"
+                android:translationZ="90dp"
+                app:layout_constraintBottom_toBottomOf="@+id/name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
-                app:layout_constraintVertical_bias="0.0"
                 app:paletteImage="@{champion.splashImageUrl}"
                 app:paletteView="@{header}"
                 app:toast="@{vm.toastLiveData}"
-                tools:src="@tools:sample/avatars" />
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView"
+                tools:background="@tools:sample/avatars" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -127,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{String.valueOf(vm.championInfoLiveData.tags[0])}"
-                android:textSize="21sp"
+                android:textSize="19sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView"
                 tools:text="Fighter" />
@@ -145,8 +162,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 app:imageDrawable="@{vm.championInfoLiveData.roleDrawableId(context)}"
@@ -157,8 +174,8 @@
 
             <ImageView
                 android:id="@+id/diff1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/defense"
                 app:layout_constraintTop_toBottomOf="@+id/defense"
@@ -166,18 +183,18 @@
 
             <ImageView
                 android:id="@+id/diff2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:tint="@{4 > vm.championInfoLiveData.info.difficulty ? @color/background800 : @color/md_blue_30}"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:tint="@{4 >= vm.championInfoLiveData.info.difficulty ? @color/background800 : @color/md_blue_30}"
                 app:layout_constraintBottom_toBottomOf="@+id/diff1"
                 app:layout_constraintStart_toEndOf="@+id/diff1"
                 app:srcCompat="@drawable/ic_indicator_2" />
 
             <ImageView
                 android:id="@+id/diff3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:tint="@{ 7 > vm.championInfoLiveData.info.difficulty? @color/background800 : @color/md_blue_30}"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:tint="@{ 7 >= vm.championInfoLiveData.info.difficulty? @color/background800 : @color/md_blue_30}"
                 app:layout_constraintBottom_toBottomOf="@+id/diff2"
                 app:layout_constraintStart_toEndOf="@+id/diff2"
                 app:srcCompat="@drawable/ic_indicator_2" />
@@ -422,6 +439,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="32dp"
                 android:background="@color/background"
+                app:tabGravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/move"

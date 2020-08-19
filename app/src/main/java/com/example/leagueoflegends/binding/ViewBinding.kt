@@ -3,14 +3,18 @@ package com.example.leagueoflegends.binding
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.GradientDrawable.*
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -20,6 +24,7 @@ import coil.bitmappool.BitmapPool
 import coil.size.Size
 import coil.transform.RoundedCornersTransformation
 import coil.transform.Transformation
+import com.example.leagueoflegends.R
 import com.example.leagueoflegends.extensions.createGradient
 import com.example.leagueoflegends.extensions.gone
 import com.google.android.material.card.MaterialCardView
@@ -70,7 +75,7 @@ fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView:
             val input =it.toBitmap().copy(Bitmap.Config.ARGB_8888, false)
             val palette = Palette.Builder(input).generate()
             val light = palette.mutedSwatch?.rgb
-            val domain = palette.dominantSwatch?.rgb
+            val domain = palette.mutedSwatch?.rgb
             if (domain != null) {
                 if (light != null) {
                     val gradient = createGradient(intArrayOf(light, domain), Orientation.TOP_BOTTOM)
@@ -81,7 +86,9 @@ fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView:
                             statusBarColor = light
                         }
                     }
-                    view.setImageDrawable(it)
+                    view.background =it
+                    view.setImageDrawable(GradientDrawable(Orientation.TOP_BOTTOM,
+                        intArrayOf(Color.TRANSPARENT,Color.TRANSPARENT, domain)))
                 } else {
                     paletteView.setBackgroundColor(domain)
                 }
