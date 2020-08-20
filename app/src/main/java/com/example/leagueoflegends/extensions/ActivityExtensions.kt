@@ -23,6 +23,14 @@ fun AppCompatActivity.onTransformationEndContainerApplyParams() {
         duration = TRANSITION_ACTIVITY_DURATION
         pathMotion = MaterialArcMotion()
     }
+    // Due to a bug in Material components 1.3.0-alpha02 we need to set a return Transformation manually
+    val returnTransformation = MaterialContainerTransform().apply {
+        addTarget(android.R.id.content)
+        fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
+        isHoldAtEndEnabled = true
+        duration = 450
+    }
+    window.sharedElementReturnTransition = returnTransformation
     window.sharedElementEnterTransition = materialTransform
 }
 
