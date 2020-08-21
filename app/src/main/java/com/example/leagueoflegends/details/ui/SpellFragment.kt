@@ -16,7 +16,7 @@ import com.example.leagueoflegends.extensions.fromJson
 import com.example.leagueoflegends.extensions.json
 import com.example.leagueoflegends.model.ChampionDetail
 
-private const val ARG_SPELL_OBJ = "object"
+const val ARG_SPELL_OBJ = "object"
 
 class SpellFragment : Fragment() {
 
@@ -32,28 +32,5 @@ class SpellFragment : Fragment() {
             }
         }
         return binding.root
-    }
-}
-
-class SpellAdapter(
-    fragmentActivity: FragmentActivity,
-    private val spells: MutableList<ChampionDetail.Spell> = mutableListOf()
-) : FragmentStateAdapter(fragmentActivity) {
-
-    override fun getItemCount(): Int = spells.size
-
-    override fun createFragment(position: Int): Fragment {
-        val fragment = SpellFragment()
-        fragment.arguments = Bundle().apply {
-            putString(ARG_SPELL_OBJ, spells[position].json())
-        }
-        return fragment
-    }
-
-    fun add(spells: List<ChampionDetail.Spell>?) {
-        spells?.let {
-            this.spells.addAll(it)
-        }
-        notifyDataSetChanged()
     }
 }

@@ -435,14 +435,17 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="32dp"
                 android:background="@color/background"
-                app:tabGravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/move"
+                app:tabGravity="center"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorGravity="center"
+                app:tabMode="fixed"
                 app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:tabTextColor="@color/white" />
 

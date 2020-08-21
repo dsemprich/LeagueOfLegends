@@ -4,7 +4,9 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.TableLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -15,6 +17,7 @@ import com.example.leagueoflegends.databinding.ActivityDetailsBinding
 import com.example.leagueoflegends.extensions.TRANSITION_ACTIVITY
 import com.example.leagueoflegends.extensions.onTransformationEndContainerApplyParams
 import com.example.leagueoflegends.model.Champion
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.tab_spells.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -43,8 +46,7 @@ class DetailsActivity : AppCompatActivity() {
         viewModel.championInfoLiveData.observe(this) {
             spellAdapter.add(it?.spells)
             binding.tabLayout.apply {
-                this.isTabIndicatorFullWidth = false
-                TabLayoutMediator(this, binding.pager) { tab, position ->
+                TabLayoutMediator(this, binding.pager, false) { tab, position ->
                     tab.setCustomView(R.layout.tab_spells)
                     tab.view.icon.load(it?.spells?.get(position)?.spellImage())
                 }.attach()
