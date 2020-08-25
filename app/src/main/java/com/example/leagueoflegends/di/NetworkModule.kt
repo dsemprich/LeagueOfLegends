@@ -2,7 +2,6 @@ package com.example.leagueoflegends.di
 
 import com.example.leagueoflegends.network.LolService
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -21,7 +20,6 @@ val networkModule = module {
             .client(get())
             .baseUrl("http://ddragon.leagueoflegends.com/cdn/10.15.1/")
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
             .build()
     }
 

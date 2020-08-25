@@ -2,10 +2,10 @@ package com.example.leagueoflegends.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.leagueoflegends.base.RecyclerViewPaginator
 import com.example.leagueoflegends.main.ui.ChampionsAdapter
 import com.example.leagueoflegends.main.ui.MainViewModel
 import com.example.leagueoflegends.model.Champion
-import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 
 @BindingAdapter("adapter")
 fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
